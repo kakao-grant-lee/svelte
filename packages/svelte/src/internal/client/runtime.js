@@ -305,6 +305,9 @@ export function handle_error(error, effect, previous_effect, component_context) 
 		handled_errors.has(error)
 	) {
 		propagate_error(error, effect);
+		if (should_rethrow_error(effect)) {
+			throw error;
+		}
 		return;
 	}
 
